@@ -12,6 +12,7 @@
 #define GENERICAPP_MAX_CLUSTERS     1
 #define GENERICAPP_CLUSTERID        1
 /* 结构体或枚举 ----------------------------------------------------------*/
+
 /* 函数声明---------------------------------------------------------------*/
 void GenericApp_MessageMSGCB( afIncomingMSGPacket_t *pckt );
 void GenericApp_SendTheMessage( void );

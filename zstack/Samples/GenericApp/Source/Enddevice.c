@@ -60,13 +60,12 @@ void GenericApp_Init( byte task_id )
     GenericApp_epDesc.endPoint    =   GENERICAPP_ENDPOINT;
     GenericApp_epDesc.task_id   =   &GenericApp_TaskID;
     GenericApp_epDesc.simpleDesc    =   
-      (SimpleDescriptionFormat_t *)&GenericApp_SimpleDesc;
+        (SimpleDescriptionFormat_t *)&GenericApp_SimpleDesc;
     GenericApp_epDesc.latencyReq    =   noLatencyReqs;//对节点描述符进行初始化
     afRegister( &GenericApp_epDesc );//使用afRegister函数将节点描述符进行注册
 }
 
 //消息处理函数，完成对接收数据的处理
-/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 * 函数名  ：GenericApp_ProcessEvent
 * 参数    ： byte task_id, UINT16 events 
@@ -77,46 +76,46 @@ void GenericApp_Init( byte task_id )
 ----------------------------------------------------------------*/
 UINT16 GenericApp_ProcessEvent( byte task_id, UINT16 events )
 {
-  afIncomingMSGPacket_t *MSGpkt;
-  if ( events &SYS_EVENT_MSG )
-  {
-     MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive
-       (GenericApp_TaskID);
-     while ( MSGpkt )
-     {
-        switch ( MSGpkt->hdr.event )
+    afIncomingMSGPacket_t *MSGpkt;
+    if ( events &SYS_EVENT_MSG )
+    {
+        MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive
+            (GenericApp_TaskID);
+        while ( MSGpkt )
         {
-        case ZDO_STATE_CHANGE:
-          GenericApp_NwkState = (devStates_t)(MSGpkt->hdr.
-          status);//读取节点设备类型
-          if (GenericApp_NwkState == DEV_END_DEVICE)//对节点设备类型进行判断，是终端节点，继续执行，实现无线数据发送
-          {
-            GenericApp_SendTheMessage() ;
-          }
-          break;
-        default:
-          break;
+            switch ( MSGpkt->hdr.event )
+            {
+            case ZDO_STATE_CHANGE:
+                GenericApp_NwkState = (devStates_t)(MSGpkt->hdr.
+                                                    status);//读取节点设备类型
+                if (GenericApp_NwkState == DEV_END_DEVICE)//对节点设备类型进行判断，是终端节点，继续执行，实现无线数据发送
+                {
+                    GenericApp_SendTheMessage() ;
+                }
+                break;
+            default:
+                break;
+            }
+            osal_msg_deallocate( (uint8 *)MSGpkt );
+            MSGpkt = (afIncomingMSGPacket_t*)osal_msg_receive(GenericApp_TaskID );
         }
-        osal_msg_deallocate( (uint8 *)MSGpkt );
-        MSGpkt = (afIncomingMSGPacket_t*)osal_msg_receive(GenericApp_TaskID );
-}
         return (events ^ SYS_EVENT_MSG);
-  }
-         return 0;
-     }
-        void GenericApp_SendTheMessage( void )
-        {
-          unsigned char theMessageData[4] = "LED";//定义数组，存放要发送的数据
-          afAddrType_t my_DstAddr;//定义变量
-          my_DstAddr.addrMode = (afAddrMode_t)Addr16Bit;//将发送地址模式设置为单播（Addr16Bit）
-          my_DstAddr.endPoint = GENERICAPP_ENDPOINT;//初始化端口号
-          my_DstAddr.addr.shortAddr = 0x0000;//0x0000为协调器网络地址，在Zigbee网络中是固定的
-          AF_DataRequest( &my_DstAddr,&GenericApp_epDesc,//调用数据发送函数AF_DataRequest进行无线数据发送
-                         GENERICAPP_CLUSTERID,
-                          3,
-                          theMessageData,
-                          &GenericApp_TransID,
-                          AF_DISCV_ROUTE, 
-                          AF_DEFAULT_RADIUS);
-              HalLedBlink (HAL_LED_2,0,50,500);//调用HalLedBlink函数，使终端节点的LED2闪烁
-        }
+    }
+    return 0;
+}
+void GenericApp_SendTheMessage( void )
+{
+    unsigned char theMessageData[4] = "LED";//定义数组，存放要发送的数据
+    afAddrType_t my_DstAddr;//定义变量
+    my_DstAddr.addrMode = (afAddrMode_t)Addr16Bit;//将发送地址模式设置为单播（Addr16Bit）
+    my_DstAddr.endPoint = GENERICAPP_ENDPOINT;//初始化端口号
+    my_DstAddr.addr.shortAddr = 0x0000;//0x0000为协调器网络地址，在Zigbee网络中是固定的
+    AF_DataRequest( &my_DstAddr,&GenericApp_epDesc,//调用数据发送函数AF_DataRequest进行无线数据发送
+                   GENERICAPP_CLUSTERID,
+                   3,
+                   theMessageData,
+                   &GenericApp_TransID,
+                   AF_DISCV_ROUTE, 
+                   AF_DEFAULT_RADIUS);
+    HalLedBlink (HAL_LED_2,0,50,500);//调用HalLedBlink函数，使终端节点的LED2闪烁
+}

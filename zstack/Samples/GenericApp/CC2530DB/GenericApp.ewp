@@ -6605,7 +6605,7 @@
           <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_radio_defs.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_radio_defs.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\mac\LOW_LEVEL\srf04\SINGLE_CHIP\mac_radio_defs.h</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_rffrontend.c</name>
@@ -6664,7 +6664,7 @@
       <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_SYS.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_SYS.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\mt\MT_SYS.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_TASK.c</name>
@@ -6694,7 +6694,7 @@
       <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_ZDO.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_ZDO.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\mt\MT_ZDO.h</name>
     </file>
   </group>
   <group>
@@ -6739,7 +6739,7 @@
       <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\stack\nwk\nwk_globals.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\stack\nwk\nwk_util.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\stack\nwk\nwk_util.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\stack\nwk\reflecttrack.h</name>
@@ -6883,7 +6883,7 @@
       <name>$PROJ_DIR$\..\..\..\..\..\Components\stack\zdo\ZDNwkMgr.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\stack\zdo\ZDNwkMgr.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\stack\zdo\ZDNwkMgr.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Components\stack\zdo\ZDObject.c</name>

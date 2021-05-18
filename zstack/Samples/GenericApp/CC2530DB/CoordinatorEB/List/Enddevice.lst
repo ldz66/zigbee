@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         17/May/2021  15:58:24 #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         17/May/2021  16:56:54 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -131,11 +131,169 @@
 #                                                                             #
 ###############################################################################
 
+C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\GenericApp\CC2530DB\Enddevice.c
+      1          #include "OSAL.h"
+      2          #include "AF.h"
+      3          #include "ZDApp.h"
+      4          #include "ZDObject.h"
+      5          #include "ZDProfile.h"
+      6          #include <string.h>
+      7          #include "Coordinator.h"
+      8          #include "DebugTrace.h"
+      9          
+     10          #if !defined( WIN32 )
+     11          #include "OnBoard.h"
+     12          #endif
+     13          
+     14          /* HAL */
+     15          #include "hal_lcd.h"
+     16          #include "hal_led.h"
+     17          #include "hal_key.h"
+     18          #include "hal_uart.h"
+     19          
+     20          const cId_t GenericApp_ClusterList[GENERICAPP_MAX_CLUSTERS] =
+     21          {
+     22              GENERICAPP_CLUSTERID
+     23          };
+     24          
+     25          const SimpleDescriptionFormat_t GenericApp_SimpleDesc =
+     26          {
+     27              GENERICAPP_ENDPOINT,              //  int Endpoint;
+     28              GENERICAPP_PROFID,                //  uint16 AppProfId[2];
+     29              GENERICAPP_DEVICEID,              //  uint16 AppDeviceId[2];
+     30              GENERICAPP_DEVICE_VERSION,        //  int   AppDevVer:4;
+     31              GENERICAPP_FLAGS,                 //  int   AppFlags:4;
+     32              0,         
+     33                  (cId_t *)NULL 
+     34              GENERICAPP_MAX_CLUSTERS,          //  byte  AppNumInClusters;
+                     ^
+Error[Pe067]: expected a "}"
+     35              (cId_t *)GenericApp_ClusterList,  //  byte *pAppInClusterList; 
+     36          };
+     37          
+     38          endPointDesc_t GenericApp_epDesc;
+     39          byte GenericApp_TaskID;
+     40          byte GenericApp_TransID;
+     41          devStates_t GenericApp_NwkState;
+     42          
+     43          void GenericApp_MessageMSGCB( afIncomingMSGPacket_t *pckt );
+     44          void GenericApp_SendTheMessage( void );
+     45          
+     46          void GenericApp_Init( byte task_id )
+     47          {
+     48              GenericApp_TaskID          = task_id;
+     49              GenericApp_NwkState        = DEV_INIT;
+     50              GenericApp_TransID         = 0;
+     51              GenericApp_epDesc.endPoint = GENERICAPP_ENDPOINT;
+     52              GenericApp_epDesc.task_id  = &GenericApp_TaskID;
+     53              GenericApp_epDesc.simpleDesc = (SimpleDescriptionFormat_t *)&GenericApp_SimpleDesc;
+     54              GenericApp_epDesc.latencyReq = noLatencyReqs;
+     55              afRegister( &GenericApp_epDesc );
+     56              
+     57          }
+     58          
+     59          UINT16 GenericApp_ProcessEvent( byte task_id, UINT16 events )
+     60          {
+     61              afIncomingMSGPacket_t *MSGpkt;
+     62              if ( events & SYS_EVENT_MSG )
+     63              {
+     64                  MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( GenericApp_TaskID );
+     65                  while ( MSGpkt )
+     66                  {
+     67                      switch ( MSGpkt->hdr.event )
+     68                      {
+     69                      case ZD0_STATE_CHANGE:
+                                  ^
+Error[Pe020]: identifier "ZD0_STATE_CHANGE" is undefined
+     70                      GenericApp_NwkState == (devStates_t)(MSGpkt->hdr.status);
+                             ^
+Warning[Pe174]: expression has no effect
+     71                      if (GenericApp_NwkState == DEV_END_DEVICE)
+     72                      {
+     73                          GenericApp_SendTheMessage() ;
+     74                      }
+     75                      break;
+     76                      
+     77                      default:
+     78                          break;
+     79                      }
+     80                      osal_msg_deallocate( (uint8 *)MSGpkt );
+     81                      MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( GenericApp_TaskID );
+     82                  }
+     83                  
+     84                  return (events ^ SYS_EVENT_MSG);
+     85              }
+     86              return 0;
+     87              
+     88          }
+     89          
+     90          void GenericApp_SendTheMessage( void )
+     91          {
+     92              unsigned char theMessageData[4] = "LED";
+     93              afAddrType_t my_DstAddr;
+     94          my_DstAddr.addrMore = {afAddMode_t)Addr16Bit;
+                            ^
+Error[Pe136]: struct "<unnamed>" has no field "addrMore"
 
+  my_DstAddr.addrMore = {afAddMode_t)Addr16Bit;
+                        ^
+"C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\GenericApp\CC2530DB\Enddevice.c",94  Error[Pe029]: 
+          expected an expression
+     95          my_DstAddr.endPoint = GENERICAPP_ENDPOINT;
+     96          my_DstAddr.addr.shortAddr = 0x0000;
+     97          AF_DataRequest( &my_DstAddr, &GenericApp_enDesc,
+     98                         GENERICAPP_CLUSTERID,
+     99                         3,
+    100                         theMessageData,
+    101                         &GenericApp_TransID,
+    102                         AF_DISCV_ROUTE,
+    103                         AF_DEFAULT_RADIUS);
+    104          HalLendBlink(HAL_LED_2,0,50,500);
+    105          }
+    106          typedef struct
+    107          {
+    108              union
+    109              {
+    110                  unit16 shortAddr;
+    111                  ZLongAddr_t extAddr;
+    112              }addr;
+    113              afADDrMode_t addrMode;
+    114              unit16 panId;
+    115          }afAddType_t;
+                             ^
+Warning[Pe012]: parsing restarts here after previous syntax error
+    116          afStatus_t AF_DataRequest(afAddrType_t *dstAddr,
+    117                                    endPointDesc_t *srcEP,
+    118                                    unit15 cID,
+                                           ^
+Error[Pe020]: identifier "unit15" is undefined
+    119                                    unit16 len,
+                                           ^
+Error[Pe020]: identifier "unit16" is undefined
+    120                                    unit8 *buf,
+                                           ^
+Error[Pe020]: identifier "unit8" is undefined
+    121                                    unit8 *transID,
+                                           ^
+Error[Pe020]: identifier "unit8" is undefined
+    122                                    unit8 options,
+                                           ^
+Error[Pe020]: identifier "unit8" is undefined
+    123                                    unit8 radius)
+                                           ^
+Error[Pe020]: identifier "unit8" is undefined
+    124          
+    125            }
+                   ^
+Error[Pe065]: expected a ";"
 
- 
- 
- 0 bytes of memory
+      unsigned char theMessageData[4] = "LED";
+                    ^
+"C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\GenericApp\CC2530DB\Enddevice.c",92  Warning[Pe177]: 
+          variable "theMessageData" was declared but never referenced
+    126          }
+                 ^
+Error[Pe169]: expected a declaration
 
-Errors: none
-Warnings: none
+Errors: 12
+Warnings: 3

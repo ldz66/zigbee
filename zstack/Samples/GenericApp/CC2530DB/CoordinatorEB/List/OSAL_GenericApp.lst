@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         18/May/2021  16:08:51 #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         18/May/2021  16:10:57 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -196,8 +196,8 @@ C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\GenericAp
      62            #include "aps_frag.h"
      63          #endif
      64          
-     65          //#include "GenericApp.h"
-     66          #include "Coordinator.h"
+     65          #include "Coordinator.h"
+     66          
      67          /*********************************************************************
      68           * GLOBAL VARIABLES
      69           */
