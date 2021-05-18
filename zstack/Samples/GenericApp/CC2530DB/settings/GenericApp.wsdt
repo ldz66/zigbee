@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>GenericApp/EndDeviceEB</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>244</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+    <Build><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1107</ColumnWidth1><ColumnWidth2>295</ColumnWidth2><ColumnWidth3>73</ColumnWidth3></Build></Static>
+    <Windows>
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-4565-1521</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>GenericApp</ExpandedNode><ExpandedNode>GenericApp/App</ExpandedNode><ExpandedNode>GenericApp/HAL</ExpandedNode><ExpandedNode>GenericApp/HAL/Common</ExpandedNode><ExpandedNode>GenericApp/HAL/Common/hal_assert.c</ExpandedNode><ExpandedNode>GenericApp/HAL/Target</ExpandedNode><ExpandedNode>GenericApp/HAL/Target/CC2530EB</ExpandedNode><ExpandedNode>GenericApp/HAL/Target/CC2530EB/Config</ExpandedNode><ExpandedNode>GenericApp/Tools</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1><Tabs><Tab><Identity>TabID-18018-17012</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd1></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\hal\target\CC2530EB\hal_board_cfg.h</Filename><XPos>0</XPos><YPos>255</YPos><SelStart>6763</SelStart><SelEnd>6763</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\Tools\CC2530DB\f8w2530.xcl</Filename><XPos>0</XPos><YPos>54</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\Tools\CC2530DB\f8wConfig.cfg</Filename><XPos>0</XPos><YPos>30</YPos><SelStart>1836</SelStart><SelEnd>1836</SelEnd></Tab><ActiveTab>2</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\_hal_uart_dma.c</Filename><XPos>0</XPos><YPos>319</YPos><SelStart>13238</SelStart><SelEnd>13238</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_dma.c</Filename><XPos>0</XPos><YPos>93</YPos><SelStart>3713</SelStart><SelEnd>3713</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-05350b78><key>iaridepm.enu1</key></Toolbar-05350b78></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>388</Bottom><Right>335</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>130208</sizeHorzCX><sizeHorzCY>256082</sizeHorzCY><sizeVertCX>219401</sizeVertCX><sizeVertCY>499360</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>348</Bottom><Right>1538</Right><x>-2</x><y>-2</y><xscreen>1540</xscreen><yscreen>350</yscreen><sizeHorzCX>1002604</sizeHorzCX><sizeHorzCY>448143</sizeHorzCY><sizeVertCX>130208</sizeVertCX><sizeVertCY>256082</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

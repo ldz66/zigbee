@@ -1,0 +1,9 @@
+[Breakpoints]
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\Coordinator.h}.22.25@1" 1 0 0 0 "" 0 ""
+Count=1
+[ChipconEmu]
+Stop timers on halt=1
+Leave target running=1
+[Aliases]
+Count=0
+SuppressDialog=0
