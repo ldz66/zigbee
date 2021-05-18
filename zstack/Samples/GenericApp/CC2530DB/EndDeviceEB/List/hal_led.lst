@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         18/May/2021  16:06:24 #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         18/May/2021  16:06:17 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -1062,14 +1062,14 @@ C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Components\hal\target\CC2530EB\ha
    \   00001C   7004         JNZ     ??HalLedOnOff_3
     393              {
     394                HAL_TURN_ON_LED2();
-   \   00001E   D291         SETB    0x90.1
+   \   00001E   C291         CLR     0x90.1
    \   000020   8002         SJMP    ??HalLedOnOff_2
     395              }
     396              else
     397              {
     398                HAL_TURN_OFF_LED2();
    \                     ??HalLedOnOff_3:
-   \   000022   C291         CLR     0x90.1
+   \   000022   D291         SETB    0x90.1
     399              }
     400            }
     401          
@@ -1085,14 +1085,14 @@ C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Components\hal\target\CC2530EB\ha
    \   00002C   7004         JNZ     ??HalLedOnOff_5
     405              {
     406                HAL_TURN_ON_LED3();
-   \   00002E   D294         SETB    0x90.4
+   \   00002E   C294         CLR     0x90.4
    \   000030   8002         SJMP    ??HalLedOnOff_4
     407              }
     408              else
     409              {
     410                HAL_TURN_OFF_LED3();
    \                     ??HalLedOnOff_5:
-   \   000032   C294         CLR     0x90.4
+   \   000032   D294         SETB    0x90.4
     411              }
     412            }
     413          
@@ -1217,72 +1217,53 @@ C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Components\hal\target\CC2530EB\ha
    \   000010   E590         MOV     A,0x90
    \   000012   F9           MOV     R1,A
     478            HalSleepLedState |= HAL_STATE_LED4() << 3;
-   \   000013   E590         MOV     A,0x90
-   \   000015   FA           MOV     R2,A
-   \   000016   E8           MOV     A,R0
-   \   000017   A2E1         MOV     C,0xE0 /* A   */.1
-   \   000019   5004         JNC     ??HalLedEnterSleep_0
-   \   00001B   D2F0         SETB    B.0
-   \   00001D   8002         SJMP    ??HalLedEnterSleep_1
+   \   000013   D2F0         SETB    B.0
+   \   000015   A290         MOV     C,0x90.0
+   \   000017   30F001       JNB     B.0,??HalLedEnterSleep_0
+   \   00001A   B3           CPL     C
    \                     ??HalLedEnterSleep_0:
-   \   00001F   C2F0         CLR     B.0
-   \                     ??HalLedEnterSleep_1:
+   \   00001B   E4           CLR     A
+   \   00001C   33           RLC     A
+   \   00001D   33           RLC     A
+   \   00001E   33           RLC     A
+   \   00001F   33           RLC     A
+   \   000020   FA           MOV     R2,A
    \   000021   E9           MOV     A,R1
    \   000022   A2E4         MOV     C,0xE0 /* A   */.4
-   \   000024   5004         JNC     ??HalLedEnterSleep_2
-   \   000026   D2F1         SETB    B.1
-   \   000028   8002         SJMP    ??HalLedEnterSleep_3
-   \                     ??HalLedEnterSleep_2:
-   \   00002A   C2F1         CLR     B.1
-   \                     ??HalLedEnterSleep_3:
-   \   00002C   D2F2         SETB    B.2
-   \   00002E   EA           MOV     A,R2
-   \   00002F   A2E0         MOV     C,0xE0 /* A   */.0
-   \   000031   30F201       JNB     B.2,??HalLedEnterSleep_4
-   \   000034   B3           CPL     C
-   \                     ??HalLedEnterSleep_4:
-   \   000035   E4           CLR     A
-   \   000036   33           RLC     A
-   \   000037   33           RLC     A
-   \   000038   33           RLC     A
+   \   000024   E4           CLR     A
+   \   000025   33           RLC     A
+   \   000026   33           RLC     A
+   \   000027   33           RLC     A
+   \   000028   6404         XRL     A,#0x4
+   \   00002A   F9           MOV     R1,A
+   \   00002B   7402         MOV     A,#0x2
+   \   00002D   68           XRL     A,R0
+   \   00002E   5402         ANL     A,#0x2
+   \   000030   F8           MOV     R0,A
+   \   000031   EB           MOV     A,R3
+   \   000032   A2E0         MOV     C,0xE0 /* A   */.0
+   \   000034   30F001       JNB     B.0,??HalLedEnterSleep_1
+   \   000037   B3           CPL     C
+   \                     ??HalLedEnterSleep_1:
+   \   000038   E4           CLR     A
    \   000039   33           RLC     A
-   \   00003A   FA           MOV     R2,A
-   \   00003B   A2F1         MOV     C,B.1
-   \   00003D   E4           CLR     A
-   \   00003E   33           RLC     A
-   \   00003F   33           RLC     A
-   \   000040   33           RLC     A
-   \   000041   F9           MOV     R1,A
-   \   000042   A2F0         MOV     C,B.0
-   \   000044   E4           CLR     A
-   \   000045   33           RLC     A
-   \   000046   33           RLC     A
-   \   000047   F8           MOV     R0,A
-   \   000048   D2F0         SETB    B.0
-   \   00004A   EB           MOV     A,R3
-   \   00004B   A2E0         MOV     C,0xE0 /* A   */.0
-   \   00004D   30F001       JNB     B.0,??HalLedEnterSleep_5
-   \   000050   B3           CPL     C
-   \                     ??HalLedEnterSleep_5:
-   \   000051   E4           CLR     A
-   \   000052   33           RLC     A
-   \   000053   48           ORL     A,R0
-   \   000054   49           ORL     A,R1
-   \   000055   4A           ORL     A,R2
-   \   000056   90....       MOV     DPTR,#HalSleepLedState
-   \   000059   F0           MOVX    @DPTR,A
+   \   00003A   48           ORL     A,R0
+   \   00003B   49           ORL     A,R1
+   \   00003C   4A           ORL     A,R2
+   \   00003D   90....       MOV     DPTR,#HalSleepLedState
+   \   000040   F0           MOVX    @DPTR,A
     479          
     480            /* TURN OFF all LEDs to save power */
     481            HalLedOnOff (HAL_LED_ALL, HAL_LED_MODE_OFF);
-   \   00005A                ; Setup parameters for call to function HalLedOnOff
-   \   00005A   7A00         MOV     R2,#0x0
-   \   00005C   790F         MOV     R1,#0xf
-   \   00005E   12....       LCALL   ??HalLedOnOff?relay
+   \   000041                ; Setup parameters for call to function HalLedOnOff
+   \   000041   7A00         MOV     R2,#0x0
+   \   000043   790F         MOV     R1,#0xf
+   \   000045   12....       LCALL   ??HalLedOnOff?relay
     482          #endif /* HAL_LED */
     483          
     484          }
-   \   000061   80..         SJMP    ??Subroutine3_0
-   \   000063                REQUIRE _A_P1
+   \   000048   80..         SJMP    ??Subroutine3_0
+   \   00004A                REQUIRE _A_P1
     485          
     486          /***************************************************************************************************
     487           * @fn      HalLedExitSleep
@@ -1321,7 +1302,7 @@ C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Components\hal\target\CC2530EB\ha
     505          #ifdef BLINK_LEDS
     506            /* Sleep OFF */
     507            HalLedStatusControl.sleepActive = FALSE;
-   \   000011   02....       LJMP    ?Subroutine0 & 0xFFFF
+   \   000011   80..         SJMP    ?Subroutine0
     508          #endif /* BLINK_LEDS */
     509          }
 
@@ -1425,8 +1406,8 @@ C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Components\hal\target\CC2530EB\ha
      HalLedUpdate              428
      HalLedOnOff                89
      HalLedGetState             11
-     HalLedEnterSleep           99
-     HalLedExitSleep            20
+     HalLedEnterSleep           74
+     HalLedExitSleep            19
      __Constant_64               4
      ??HalLedInit?relay          6
      ??HalLedSet?relay           6
@@ -1438,13 +1419,13 @@ C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Components\hal\target\CC2530EB\ha
      ??HalLedExitSleep?relay     6
 
  
- 999 bytes in segment BANKED_CODE
+ 973 bytes in segment BANKED_CODE
   48 bytes in segment BANK_RELAYS
    1 byte  in segment SFR_AN
    4 bytes in segment XDATA_ROM_C
   40 bytes in segment XDATA_Z
  
- 1 047 bytes of CODE  memory
+ 1 021 bytes of CODE  memory
      0 bytes of CONST memory (+ 4 bytes shared)
      0 bytes of DATA  memory (+ 1 byte  shared)
     40 bytes of XDATA memory

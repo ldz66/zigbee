@@ -64,7 +64,6 @@
 
 //#include "GenericApp.h"
 #include "Coordinator.h"
-
 /*********************************************************************
  * GLOBAL VARIABLES
  */

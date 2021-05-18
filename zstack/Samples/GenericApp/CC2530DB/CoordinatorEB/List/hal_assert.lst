@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         18/May/2021  15:54:30 #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         18/May/2021  16:08:55 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -358,9 +358,9 @@ C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Components\hal\common\hal_assert.
     127            HAL_TURN_OFF_LED1();
    \   000043   D290         SETB    0x90.0
     128            HAL_TURN_OFF_LED2();
-   \   000045   C291         CLR     0x90.1
+   \   000045   D291         SETB    0x90.1
     129            HAL_TURN_OFF_LED3();
-   \   000047   C294         CLR     0x90.4
+   \   000047   D294         SETB    0x90.4
     130            HAL_TURN_OFF_LED4();
    \   000049   8017         SJMP    ??halAssertHazardLights_3
     131          
@@ -605,8 +605,8 @@ C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Components\hal\common\hal_assert.
    \   0000DB   69           XRL     A,R1
    \   0000DC   7088         JNZ     ??halAssertHazardLights_8
    \   0000DE   D290         SETB    0x90.0
-   \   0000E0   C291         CLR     0x90.1
-   \   0000E2   C294         CLR     0x90.4
+   \   0000E0   D291         SETB    0x90.1
+   \   0000E2   D294         SETB    0x90.4
    \   0000E4   D290         SETB    0x90.0
    \   0000E6   7800         MOV     R0,#0x0
    \   0000E8   7900         MOV     R1,#0x0
@@ -653,8 +653,8 @@ C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Components\hal\common\hal_assert.
    \   000133   A281         MOV     C,0x80.1
    \   000135   50FC         JNC     ??halAssertHazardLights_6
    \   000137   C290         CLR     0x90.0
-   \   000139   D291         SETB    0x90.1
-   \   00013B   D294         SETB    0x90.4
+   \   000139   C291         CLR     0x90.1
+   \   00013B   C294         CLR     0x90.4
    \   00013D   EB           MOV     A,R3
    \   00013E   7004         JNZ     ??halAssertHazardLights_20
    \   000140   C290         CLR     0x90.0
@@ -674,8 +674,8 @@ C:\Texas Instruments\ZStack-CC2530-2.3.0-1.4.0\Components\hal\common\hal_assert.
    \                     ??CrossCallReturnLabel_1:
    \   000155   40F3         JC      ??halAssertHazardLights_22
    \   000157   D290         SETB    0x90.0
-   \   000159   C291         CLR     0x90.1
-   \   00015B   C294         CLR     0x90.4
+   \   000159   D291         SETB    0x90.1
+   \   00015B   D294         SETB    0x90.4
    \   00015D   D290         SETB    0x90.0
    \   00015F   75..01       MOV     ?V0 + 0,#0x1
    \   000162   75..00       MOV     ?V0 + 1,#0x0

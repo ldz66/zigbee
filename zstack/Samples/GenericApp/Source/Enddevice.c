@@ -31,6 +31,8 @@ const SimpleDescriptionFormat_t GenericApp_SimpleDesc =
     GENERICAPP_MAX_CLUSTERS,
     (cId_t *)GenericApp_ClusterList
 };
+
+
 //定义四个变量
 endPointDesc_t GenericApp_epDesc;//节点描述符
 byte GenericApp_TaskID;//任务优先级
@@ -42,7 +44,6 @@ void GenericApp_MessageMSGCB( afIncomingMSGPacket_t *pckt);//消息处理函数
 void GenericApp_SendTheMessage(void);//数据发送函数
 
 //以下为任务初始化函数
-/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 * 函数名  ：GenericApp_Init
 * 参数    ：byte task_id

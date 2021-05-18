@@ -43,7 +43,6 @@ byte GenericApp_TransID;//数据发送序列号GenericApp_TransID
 void GenericApp_MessageMSGCB( afIncomingMSGPacket_t *pckt );//声明消息处理函数
 void GenericApp_SendTheMessage( void );//数据发送函数
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
 * 函数名  ：GenericApp_Init
 * 参数    ：byte byte task_id
 * 返回    ：void
@@ -63,15 +62,7 @@ void GenericApp_Init( byte task_id )//初始化函数
     GenericApp_epDesc.latencyReq = noLatencyReqs;//对节点描述符进行初始化
     afRegister( &GenericApp_epDesc );//使用afRegister函数将节点描述符进行注册
 }
-/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-* 函数名  ：GenericApp_ProcessEvent
-* 参数    ： byte tasak_id, UINT15 events 
-* 返回    ：UINT16
-* 作者    ：Lishuqi
-* 时间    ：2021/5/18
-* 描述    ：函数说明
-----------------------------------------------------------------*/
 UINT16 GenericApp_ProcessEvent( byte task_id, UINT16 events )
 {
     afIncomingMSGPacket_t *MSGpkt;//定义了一个指向接收消息结构体的指针MSGpkt

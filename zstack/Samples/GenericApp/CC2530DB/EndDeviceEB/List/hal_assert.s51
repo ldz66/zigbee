@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.3.10338/W32 for 8051        18/May/2021  16:06:03 /
+// IAR C/C++ Compiler V8.10.3.10338/W32 for 8051        18/May/2021  16:06:17 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -633,9 +633,9 @@ halAssertHazardLights:
 //  127   HAL_TURN_OFF_LED1();
         SETB    0x90.0
 //  128   HAL_TURN_OFF_LED2();
-        CLR     0x90.1
+        SETB    0x90.1
 //  129   HAL_TURN_OFF_LED3();
-        CLR     0x90.4
+        SETB    0x90.4
 //  130   HAL_TURN_OFF_LED4();
         SJMP    ??halAssertHazardLights_3
 //  131 
@@ -886,8 +886,8 @@ halAssertHazardLights:
         XRL     A,R1
         JNZ     ??halAssertHazardLights_8
         SETB    0x90.0
-        CLR     0x90.1
-        CLR     0x90.4
+        SETB    0x90.1
+        SETB    0x90.4
         SETB    0x90.0
         MOV     R0,#0x0
         MOV     R1,#0x0
@@ -942,8 +942,8 @@ halAssertHazardLights:
         MOV     C,0x80.1
         JNC     ??halAssertHazardLights_6
         CLR     0x90.0
-        SETB    0x90.1
-        SETB    0x90.4
+        CLR     0x90.1
+        CLR     0x90.4
         MOV     A,R3
         JNZ     ??halAssertHazardLights_20
         CLR     0x90.0
@@ -963,8 +963,8 @@ halAssertHazardLights:
 ??CrossCallReturnLabel_1:
         JC      ??halAssertHazardLights_22
         SETB    0x90.0
-        CLR     0x90.1
-        CLR     0x90.4
+        SETB    0x90.1
+        SETB    0x90.4
         SETB    0x90.0
         MOV     ?V0 + 0,#0x1
         MOV     ?V0 + 1,#0x0
